@@ -1,4 +1,4 @@
-import { prisma } from "../../prisma/prisma";
+import { prisma } from "../../prisma/prisma.js";
 
 const signup = async (req, res) => {
     const { name, email, password, phone } = req.body;
@@ -55,6 +55,4 @@ const signup = async (req, res) => {
     }
 }
 
-module.exports = {
-    signup
-}
+export default signup
