@@ -21,6 +21,12 @@ const signup = async (req, res) => {
                     password
                 }
             })
+
+            return res.status(200).json({
+                success: true,
+                message: "user created successfully",
+                user: user
+            })
         }
         else {
             const user = await prisma.user.create({
