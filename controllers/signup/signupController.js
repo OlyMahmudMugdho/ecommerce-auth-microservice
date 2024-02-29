@@ -1,4 +1,5 @@
-import { prisma } from '../../prisma/prisma.js'
+import { prisma } from '../../prisma/prisma.js';
+import bcrypt from 'bcrypt';
 
 const signup = async (req, res) => {
     const { name, email, password, phone } = req.body
@@ -18,7 +19,7 @@ const signup = async (req, res) => {
                 data: {
                     name,
                     email,
-                    password,
+                    password: await bcrypt.hash(password, 10),
                 },
             })
 
@@ -32,7 +33,7 @@ const signup = async (req, res) => {
                 data: {
                     name,
                     email,
-                    password,
+                    password: await bcrypt.hash(password, 10),
                     phone,
                 },
             })
