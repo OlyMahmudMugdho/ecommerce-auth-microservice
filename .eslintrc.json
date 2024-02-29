@@ -10,6 +10,6 @@
         "node": true
     },
     "rules": {
-        "no-console": ["error", { "allow" : "info" }]
+        "no-console": ["error", { "allow": "info" }]
     }
 }
