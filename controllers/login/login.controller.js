@@ -1,5 +1,8 @@
 import { prisma } from "../../prisma/prisma.js";
 import bcrypt from 'bcrypt';
+import jsonwebtoken from "jsonwebtoken";
+
+const jwt = jsonwebtoken;
 
 const login = async (req, res) => {
     const { email, password } = req.body;
@@ -38,11 +41,20 @@ const login = async (req, res) => {
         })
     }
 
+    const accessToken = await jwt.sign(
+        foundUser,
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+            expiresIn: 60 * 60 * 6
+        })
+
+    res.cookie('accessToken', accessToken, { maxAge: 3 * 60 * 60, httpOnly: true })
+
     return res.status(200).json({
         ok: true,
         success: true,
         message: "successfully logged in",
-        data : foundUser
+        data: foundUser
     })
 
 }
