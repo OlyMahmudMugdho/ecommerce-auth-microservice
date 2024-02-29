@@ -1,8 +1,10 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import morgan from 'morgan'
-import bodyParser from 'body-parser'
-import signupRoute from './routes/signup/signup-route.js'
+import express from 'express';
+import dotenv from 'dotenv';
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
+import signupRoute from './routes/signup/signup-route.js';
+import loginRoute from './routes/login/login.route.js';
+
 dotenv.config()
 
 const app = express()
@@ -19,6 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/signup', signupRoute)
+app.use('/login', loginRoute)
 
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
