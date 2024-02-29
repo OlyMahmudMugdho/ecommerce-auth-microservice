@@ -48,13 +48,29 @@ const login = async (req, res) => {
             expiresIn: 60 * 60 * 6
         })
 
+    const refreshToken = await jwt.sign(
+        foundUser,
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+            expiresIn: 86400 * 90
+        })
+
+    const user = await prisma.user.update({
+        where: {
+            email: email
+        },
+        data: {
+            refreshToken: refreshToken
+        }
+    })
+
     res.cookie('accessToken', accessToken, { maxAge: 3 * 60 * 60, httpOnly: true })
 
     return res.status(200).json({
         ok: true,
         success: true,
         message: "successfully logged in",
-        data: foundUser
+        data: user
     })
 
 }
