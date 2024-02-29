@@ -13,7 +13,7 @@ const signup = async (req, res) => {
         })
     }
 
-    const isExistedUser = await prisma.user.findFirst({
+    const isExistedUser = await prisma.user.findUnique({
         where : {
             email : email
         }
