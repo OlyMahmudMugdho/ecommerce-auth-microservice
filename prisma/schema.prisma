@@ -19,6 +19,7 @@ name String
 email String
 password String
 phone String @default("")
+role String @default("customer")
 createdAt DateTime @default(now())
 updatedAt DateTime @updatedAt
 }

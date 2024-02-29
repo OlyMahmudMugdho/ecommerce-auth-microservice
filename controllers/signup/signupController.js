@@ -1,14 +1,14 @@
-import { prisma } from "../../prisma/prisma.js";
+import { prisma } from '../../prisma/prisma.js'
 
 const signup = async (req, res) => {
-    const { name, email, password, phone } = req.body;
+    const { name, email, password, phone } = req.body
 
-    if ((name === null) || (email === null) || (password === null)) {
+    if (name === null || email === null || password === null) {
         return res.status(204).json({
             ok: false,
             error: true,
-            message: "empty request body",
-            description: "name, email and password are required"
+            message: 'empty request body',
+            description: 'name, email and password are required',
         })
     }
 
@@ -18,39 +18,36 @@ const signup = async (req, res) => {
                 data: {
                     name,
                     email,
-                    password
-                }
+                    password,
+                },
             })
 
             return res.status(200).json({
                 success: true,
-                message: "user created successfully",
-                user: user
+                message: 'user created successfully',
+                user: user,
             })
-        }
-        else {
+        } else {
             const user = await prisma.user.create({
                 data: {
                     name,
                     email,
                     password,
-                    phone
-                }
+                    phone,
+                },
             })
 
             return res.status(200).json({
                 success: true,
-                message: "user created successfully",
-                user: user
+                message: 'user created successfully',
+                user: user,
             })
         }
-
-    }
-    catch (error) {
+    } catch (error) {
         return res.status(500).json({
             ok: false,
             error: true,
-            message: "internal server error",
+            message: 'internal server error',
         })
     }
 }

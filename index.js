@@ -8,7 +8,7 @@ dotenv.config()
 const app = express()
 app.use(morgan('tiny'))
 app.use(express.json())
-app.use(bodyParser.urlencoded({extended : false}))
+app.use(bodyParser.urlencoded({ extended: false }))
 const PORT = process.env.PORT || 8081
 
 app.get('/', (req, res) => {
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
     })
 })
 
-app.use('/signup', signupRoute )
+app.use('/signup', signupRoute)
 
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
