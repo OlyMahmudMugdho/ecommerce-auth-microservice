@@ -13,6 +13,21 @@ const signup = async (req, res) => {
         })
     }
 
+    const isExistedUser = await prisma.user.findFirst({
+        where : {
+            email : email
+        }
+    })
+
+
+    if(isExistedUser) {
+        return res.status(409).json({
+            ok : false,
+            error : true,
+            message : "user already existed with this email"
+        })
+    }
+
     try {
         if (phone === null) {
             const user = await prisma.user.create({
