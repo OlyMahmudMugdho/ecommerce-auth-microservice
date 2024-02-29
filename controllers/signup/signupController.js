@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 const signup = async (req, res) => {
     const { name, email, password, phone } = req.body
 
-    if (name === null || email === null || password === null) {
+    if (!name || !email || !password) {
         return res.status(204).json({
             ok: false,
             error: true,
