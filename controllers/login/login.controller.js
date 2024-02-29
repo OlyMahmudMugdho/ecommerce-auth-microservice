@@ -4,7 +4,8 @@ import bcrypt from 'bcrypt';
 const login = async (req, res) => {
     const { email, password } = req.body;
 
-    if (email || password) {
+
+    if (!email || !password) {
         return res.status(204).json({
             ok: false,
             error: true,
@@ -26,6 +27,7 @@ const login = async (req, res) => {
         })
     }
 
+
     const hasMatched = await bcrypt.compare(password, foundUser.password);
 
     if (!hasMatched) {
@@ -39,7 +41,8 @@ const login = async (req, res) => {
     return res.status(200).json({
         ok: true,
         success: true,
-        message: foundUser
+        message: "successfully logged in",
+        data : foundUser
     })
 
 }
