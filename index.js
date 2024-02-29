@@ -1,11 +1,10 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import morgan from 'morgan';
-import bodyParser from 'body-parser';
-import signupRoute from './routes/signup/signup-route.js';
-import loginRoute from './routes/login/login.route.js';
-import cookieParser from 'cookie-parser';
-
+import express from 'express'
+import dotenv from 'dotenv'
+import morgan from 'morgan'
+import bodyParser from 'body-parser'
+import signupRoute from './routes/signup/signup-route.js'
+import loginRoute from './routes/login/login.route.js'
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 

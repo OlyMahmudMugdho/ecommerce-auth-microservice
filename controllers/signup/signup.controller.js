@@ -1,5 +1,5 @@
-import { prisma } from '../../prisma/prisma.js';
-import bcrypt from 'bcrypt';
+import { prisma } from '../../prisma/prisma.js'
+import bcrypt from 'bcrypt'
 
 const signup = async (req, res) => {
     const { name, email, password, phone } = req.body
@@ -14,17 +14,16 @@ const signup = async (req, res) => {
     }
 
     const isExistedUser = await prisma.user.findUnique({
-        where : {
-            email : email
-        }
+        where: {
+            email: email,
+        },
     })
 
-
-    if(isExistedUser) {
+    if (isExistedUser) {
         return res.status(409).json({
-            ok : false,
-            error : true,
-            message : "user already existed with this email"
+            ok: false,
+            error: true,
+            message: 'user already existed with this email',
         })
     }
 
