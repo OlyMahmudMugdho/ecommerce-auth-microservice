@@ -4,7 +4,6 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import signupRoute from './routes/signup/signup-route.js'
 import loginRoute from './routes/login/login.route.js'
-import cookieParser from 'cookie-parser'
 
 dotenv.config()
 
@@ -25,5 +24,5 @@ app.use('/signup', signupRoute)
 app.use('/login', loginRoute)
 
 app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`)
+    console.info(`server is running on port ${PORT}`)
 })
