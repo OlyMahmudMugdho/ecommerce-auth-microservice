@@ -1,8 +1,9 @@
 import express from 'express'
 import loginController from '../../controllers/login/login.controller.js'
+import verify from 'jsonwebtoken/verify.js';
 
 const router = express.Router()
 
-router.route('/').post(loginController)
+router.route('/').post(verify, loginController)
 
 export default router
