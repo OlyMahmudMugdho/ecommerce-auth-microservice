@@ -5,8 +5,11 @@ import bodyParser from 'body-parser'
 import signupRoute from './routes/signup/signup.route.js'
 import loginRoute from './routes/login/login.route.js'
 import {prisma} from './prisma/prisma.js'
+import generate from './utils/jwt.generator.js'
 
 dotenv.config()
+
+console.log(process.env.JWT_SECRET)
 
 const app = express()
 app.use(morgan('tiny'))
@@ -28,6 +31,7 @@ app.listen(PORT, async () => {
     try {
         await prisma.$connect();
         console.info("database connected");
+        await generate();
         await prisma.$disconnect();
     } catch (error) {
         console.error(error.message);
