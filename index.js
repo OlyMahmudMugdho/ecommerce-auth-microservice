@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import signupRoute from './routes/signup/signup.route.js'
 import loginRoute from './routes/login/login.route.js'
+import prisma from './prisma/prisma.js'
 
 dotenv.config()
 
@@ -23,6 +24,12 @@ app.get('/', (req, res) => {
 app.use('/signup', signupRoute)
 app.use('/login', loginRoute)
 
-app.listen(PORT, () => {
-    console.info(`server is running on port ${PORT}`)
+app.listen(PORT, async () => {
+    try {
+        await prisma.$connect();
+        console.info("database connected");
+        await prisma.disconnect();
+    } catch (error) {
+        console.error(error);
+    }
 })
