@@ -1,6 +1,6 @@
 import express from 'express'
 import loginController from '../../controllers/login/login.controller.js'
-import verify from '../../middlewares/middleware.cjs';
+import verify from '../../middlewares/tokenVerification.cjs';
 
 const router = express.Router()
 
