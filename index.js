@@ -28,7 +28,7 @@ app.listen(PORT, async () => {
     try {
         await prisma.$connect();
         console.info("database connected");
-        await prisma.disconnect();
+        await prisma.$disconnect();
     } catch (error) {
         console.error(error.message);
     }
