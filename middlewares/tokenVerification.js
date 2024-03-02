@@ -1,5 +1,4 @@
-const jsonwebtoken = require("jsonwebtoken")
-require("dotenv").config()
+import jsonwebtoken from "jsonwebtoken"
 
 const verify = async (req, res, next) => {
     const token = req.headers['authorization'].split(' ')[1]
@@ -27,9 +26,6 @@ const verify = async (req, res, next) => {
             next()
         }
     });
-
-
-
 }
 
-module.exports= verify;
+export default verify;
