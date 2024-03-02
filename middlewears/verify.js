@@ -5,7 +5,7 @@ const verify = async (req, res, next) => {
         req.source = decoded.source;
         next()
     } catch (error) {
-        res.status(401).json({
+        return res.status(401).json({
             ok: false,
             error: true,
             message: 'invalid token for auth service request',
