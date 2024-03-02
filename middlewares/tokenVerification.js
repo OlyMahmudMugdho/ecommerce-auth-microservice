@@ -1,14 +1,18 @@
 import jsonwebtoken from "jsonwebtoken"
 
 const verify = async (req, res, next) => {
-    const token = req.headers['authorization'].split(' ')[1]
-    if (!token) {
+
+    const header = req.headers['authorization']
+
+    if (!header) {
         return res.status(401).json({
             ok: false,
             error: true,
-            message: 'invalid token ',
+            message: 'no authorization header found',
         })
     }
+    
+    const token = header.split(' ')[1]
 
     console.info(process.env.JWT_SECRET)
 
