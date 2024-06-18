@@ -69,12 +69,19 @@ const login = async (req, res) => {
         httpOnly: true,
     })
 
-    return res.status(200).json({
+    /* return res.status(200).json({
         ok: true,
         success: true,
         message: 'successfully logged in',
         data: user,
     })
+        // this code is for development purpose    
+    */
+
+
+    
+
+
 }
 
 export default login
