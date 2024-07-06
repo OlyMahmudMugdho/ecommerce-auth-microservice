@@ -4,6 +4,6 @@ import verify from '../../middlewares/tokenVerification.js';
 
 const router = express.Router()
 
-router.route('/').post(verify, signup)
+router.route('/').post( signup)
 
 export default router
