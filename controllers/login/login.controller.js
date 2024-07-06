@@ -21,6 +21,8 @@ const login = async (req, res) => {
         },
     })
 
+    //console.log(await foundUser)
+
     if (!foundUser) {
         return res.status(404).json({
             ok: false,
@@ -40,7 +42,9 @@ const login = async (req, res) => {
     }
 
     const accessToken = await jwt.sign(
-        foundUser,
+        {
+            email : foundUser.email
+        },
         process.env.ACCESS_TOKEN_SECRET,
         {
             expiresIn: 60 * 60 * 6,
@@ -48,7 +52,9 @@ const login = async (req, res) => {
     )
 
     const refreshToken = await jwt.sign(
-        foundUser,
+        {
+            email : foundUser.email
+        },
         process.env.REFRESH_TOKEN_SECRET,
         {
             expiresIn: 86400 * 90,
@@ -65,7 +71,7 @@ const login = async (req, res) => {
     })
 
     res.cookie('accessToken', accessToken, {
-        maxAge: 3 * 60 * 60,
+        maxAge: 3 * 60 * 60000,
         httpOnly: true,
     })
 
