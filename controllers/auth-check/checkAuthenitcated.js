@@ -1,5 +1,4 @@
-import { error } from "console";
-import jsonwebtoken, { decode } from "jsonwebtoken";
+import jsonwebtoken from "jsonwebtoken";
 
 export const checkAuthenticated = async (req,res) =>{
     const cookies = req.cookies;
