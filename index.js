@@ -3,7 +3,8 @@ import dotenv from 'dotenv'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import signupRoute from './routes/signup/signup.route.js'
-import loginRoute from './routes/login/login.route.js'
+import loginRoute from './routes/login/login.route.js';
+import authChckerRoute from './routes/auth/authChecker.route.js';
 import { prisma } from './prisma/prisma.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -52,6 +53,7 @@ app.get('/', (req, res) => {
  */
 app.use('/api/signup', signupRoute)
 app.use('/api/login', loginRoute)
+app.use('/api/check-auth', authChckerRoute)
 
 app.listen(PORT, async () => {
     try {
