@@ -27,7 +27,7 @@ app.use(cors({ origin: 'http://localhost:8082', credentials: true }));
 app.use(morgan('tiny'))
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-const PORT = process.env.PORT || 8081
+const PORT = process.env.PORT || 8082
 
 app.get('/', (req, res) => {
     res.status(200).json({
