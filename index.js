@@ -29,7 +29,7 @@ app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 const PORT = process.env.PORT || 8082
 
-app.get('/', (req, res) => {
+app.get('/auth', (req, res) => {
     res.status(200).json({
         ok: true,
         message: 'app is running',
@@ -51,9 +51,9 @@ app.get('/', (req, res) => {
     });
 
  */
-app.use('/api/signup', signupRoute)
-app.use('/api/login', loginRoute)
-app.use('/api/check-auth', authCheckerRoute)
+app.use('/auth/api/signup', signupRoute)
+app.use('/auth/api/login', loginRoute)
+app.use('/auth/api/check-auth', authCheckerRoute)
 
 app.listen(PORT, async () => {
     try {
