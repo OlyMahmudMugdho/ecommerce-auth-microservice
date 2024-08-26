@@ -3,7 +3,8 @@ WORKDIR /app
 COPY package.json .
 RUN npm install
 RUN apt-get update -y && apt-get install -y openssl build-essential libpq-dev
-RUN cd /app && npx prisma init
 COPY . .
+RUN npx prisma generate
 EXPOSE 8082
-CMD ["node", "index.js"]
+CMD [ "npx", "prisma", "db", "push", "&&", "npx prisma migrate dev"]
+ENTRYPOINT ["node", "index.js"]
