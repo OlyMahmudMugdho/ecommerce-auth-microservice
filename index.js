@@ -50,7 +50,7 @@ app.get('/auth', (req, res) => {
         res.sendFile(path.resolve('./out/index.html'));
     });
 
- */
+ */ 
 app.use('/auth/api/signup', signupRoute)
 app.use('/auth/api/login', loginRoute)
 app.use('/auth/api/check-auth', authCheckerRoute)
