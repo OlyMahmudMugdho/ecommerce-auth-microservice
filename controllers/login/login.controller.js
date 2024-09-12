@@ -8,7 +8,7 @@ const login = async (req, res) => {
     const { email, password } = req.body
 
     if (!email || !password) {
-        return res.status(204).json({
+        return res.status(400).json({
             ok: false,
             error: true,
             message: 'email and password cannot be empty',
